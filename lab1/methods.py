@@ -22,7 +22,6 @@ def dichotomy(f, a, b, e):
     return a + (b - a) / 2, iter_count, f_count
 
 
-# Метод золотого сечения
 # TODO: endless loop on parameters: a = -3, b = 4, e = 1e-10, f = func_1
 def golden_ratio(f, a, b, e):
     def calc_x1(a , b):
