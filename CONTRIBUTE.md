@@ -10,6 +10,11 @@ Pull the changes before you start editing the code. In your local repo:
 $ git checkout master
 $ git pull
 ```
+If want to sync your branch with master
+```
+$ git checkout <your_branch>
+$ git merge master 
+```
 ## Branch naming conventions
 There is only one strict rule for the branch names. Any created branch must be associated with the lab by prefixing branch name.
 Example:
