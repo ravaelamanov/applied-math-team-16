@@ -1,9 +1,8 @@
 {
-    "python.linting.enabled": true,
     "python.testing.unittestArgs": [
         "-v",
         "-s",
-        ".",
+        "./lab1",
         "-p",
         "test_*.py"
     ],
