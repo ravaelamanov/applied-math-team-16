@@ -23,6 +23,7 @@ def dichotomy(f, a, b, e):
 
 
 # TODO: endless loop on parameters: a = -3, b = 4, e = 1e-10, f = func_1
+# TODO: Fails on precision 1e-24 and smaller
 def golden_ratio(f, a, b, e):
     def calc_x1(a , b):
         return a + k * (b - a)
@@ -66,7 +67,7 @@ def golden_ratio(f, a, b, e):
         # print (a, b)
     return a + (b - a) / 2, iter_count, f_count
 
-#TODO: revise nested funcitons
+# TODO: Fails on precision 1e-23 and smaller
 def fibonacci(f, a, b, e):
     def F(n):
         return 1/math.sqrt(5)*(((1+math.sqrt(5))/2)**n-((1-math.sqrt(5))/2)**n)
