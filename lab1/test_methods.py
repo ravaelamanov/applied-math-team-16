@@ -1,37 +1,57 @@
-import unittest
+import pytest
 from methods import *
 from sample_functions import *
-from function import Function
 
-# TODO: Think of possible test cases
-class TestMethods(unittest.TestCase):
+e_list = [10**(-i) for i in range(1, 31)]
+f = [task_func]
+a = [-2]
+b = [2]
+x0 = [0.0]
 
-    def setUp(self):
-        self.func = Function(task_func, -2, 2, 0)
-        self.e = 1e-1
-    
-    def test_dichotomy(self):
-        output = dichotomy(self.func.f, self.func.a, self.func.b, self.e)
-        self.assertLessEqual(abs(self.func.x0 - output[0]), self.e) # check if precision reached
-        self.assertEqual(output[2], output[1] * 2) # check if function lookups twice as iterations number
+@pytest.mark.parametrize("f", f)
+@pytest.mark.parametrize("a", a)
+@pytest.mark.parametrize("b", b)
+@pytest.mark.parametrize("e", e_list)
+@pytest.mark.parametrize("x0", x0)
+def test_dichotomy(f, a, b, e, x0):
+    output = dichotomy(f, a, b, e)
+    assert abs(x0 - output[0]) < e
+    assert output[2] == output[1] * 2
 
-    def test_golden_ratio(self):
-        output = golden_ratio(self.func.f, self.func.a, self.func.b, self.e)
-        self.assertLessEqual(abs(self.func.x0 - output[0]), self.e) # check if precision reached
-        self.assertEqual(output[2], output[1] + 1) # check if function lookups one more than iterations number
+@pytest.mark.parametrize("f", f)
+@pytest.mark.parametrize("a", a)
+@pytest.mark.parametrize("b", b)
+@pytest.mark.parametrize("e", e_list)
+@pytest.mark.parametrize("x0", x0)
+def test_golden_ratio(f, a, b, e, x0):
+    output = golden_ratio(f, a, b, e)
+    assert abs(x0 - output[0]) < e
+    assert output[2] == output[1] + 1
 
-    def test_fibonacci(self):
-        output = fibonacci(self.func.f, self.func.a, self.func.b, self.e)
-        self.assertLessEqual(abs(self.func.x0 - output[0]), self.e) # check if precision reached
-        self.assertEqual(output[2], output[1] + 1) # check if function lookups one more than iterations number
+@pytest.mark.parametrize("f", f)
+@pytest.mark.parametrize("a", a)
+@pytest.mark.parametrize("b", b)
+@pytest.mark.parametrize("e", e_list)
+@pytest.mark.parametrize("x0", x0)
+def test_fibonacci(f, a, b, e, x0):
+    output = fibonacci(f, a, b, e)
+    assert abs(x0 - output[0]) < e
+    assert output[2] == output[1] + 1
 
-    def test_parabolic(self):
-        output = parabolic(self.func.f, self.func.a, self.func.b, self.e)
-        self.assertLessEqual(abs(self.func.x0 - output[0]), self.e) # check if precision reached
+@pytest.mark.parametrize("f", f)
+@pytest.mark.parametrize("a", a)
+@pytest.mark.parametrize("b", b)
+@pytest.mark.parametrize("e", e_list)
+@pytest.mark.parametrize("x0", x0)
+def test_parabolic(f, a, b, e, x0):
+    output = parabolic(f, a, b, e)
+    assert abs(x0 - output[0]) < e
 
-    def test_brent(self):
-        output = brent(self.func.f, self.func.a, self.func.b, self.e)
-        self.assertLessEqual(abs(self.func.x0 - output[0]), self.e) # check if precision reached
-
-if __name__ == "__main__":
-  unittest.main()
+@pytest.mark.parametrize("f", f)
+@pytest.mark.parametrize("a", a)
+@pytest.mark.parametrize("b", b)
+@pytest.mark.parametrize("e", e_list)
+@pytest.mark.parametrize("x0", x0)
+def test_brent(f, a, b, e, x0):
+    output = brent(f, a, b, e)
+    assert abs(x0 - output[0]) < e
