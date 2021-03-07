@@ -10,6 +10,14 @@ Pull the changes before you start editing the code. In your local repo:
 $ git checkout master
 $ git pull
 ```
+## Branch naming conventions
+There is only one strict rule for the branch names. Any created branch must be associated with the lab by prefixing branch name.
+Example:
+```
+lab1/implement_fibonacci
+lab1/fix_fibonacci_precision_issue
+```
+
 ## Editing code
 Whenever you want to edit anything **create a branch** for your change:
 ```
