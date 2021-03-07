@@ -25,7 +25,7 @@ $ git checkout -b <meaningful branch name>
 ```
 and **push** it to the remote repo:
 ```
-$ git push -u origin <meaningful branch name>
+$ git push --set-upstream origin <meaningful branch name>
 ```
 Now feel free to make your changes. To upload your changes to remote repo make sure you checked out your branch:
 ```
