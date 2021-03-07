@@ -1,6 +1,9 @@
 # Прикладная математика
 ## Getting Started
-Just clone the repository using Git CLI: `$ git clone https://github.com/ravaelamanov/primat_SEM4.git`
+Just clone the repository using Git CLI: 
+```
+$ git clone https://github.com/ravaelamanov/primat_SEM4.git
+```
 ## Before you edit code locally
 Pull the changes before you start editing the code. In your local repo:
 ```
