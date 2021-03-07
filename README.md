@@ -11,29 +11,29 @@ $ git checkout master
 $ git pull
 ```
 ## Editing code
-Whenever you want to edit anything create a branch for your change:
+Whenever you want to edit anything **create a branch** for your change:
 ```
-git checkout -b <meaningful branch name>
+$ git checkout -b <meaningful branch name>
 ```
-and push it to the remote repo:
+and **push** it to the remote repo:
 ```
-git push -u origin <meaningful branch name>
+$ git push -u origin <meaningful branch name>
 ```
 Now feel free to make your changes. To upload your changes to remote repo make sure you checked out your branch:
 ```
-git checkout <meaningful branch name>
+$ git checkout <meaningful branch name>
 ```
-Stage your changes:
+**Stage your changes:**
 ```
-git add <files_you_want_to_commit>
+$ git add <files_you_want_to_commit>
 ```
-Commit the changes:
+**Commit the changes:**
 ```
-git commit -m "<meaningful commit description>"
+$ git commit -m "<meaningful commit description>"
 ```
-Push them to remote repo:
+**Push them to remote repo:**
 ```
-git push origin <meaningful branch name>
+$ git push origin <meaningful branch name>
 ```
 ## Pull Request
 When you consider your branch to be completed create a pull request and mark other contirbutors as code reviewers.
