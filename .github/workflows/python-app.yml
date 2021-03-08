@@ -6,8 +6,12 @@ name: Test Lab 1
 on:
   push:
     branches: [ master ]
+    paths: 
+      - lab1/**
   pull_request:
     branches: [ master ]
+    paths:
+      - lab1/**
 
 jobs:
   test:
