@@ -50,3 +50,13 @@ $ git push origin <meaningful branch name>
 ```
 ## Pull Request
 When you consider your branch to be completed create a pull request and mark other contirbutors as code reviewers.
+
+## Deleting branches
+After your pull request is accepted don't forget to delete the corresponding branch. To delete locally:
+```
+git branch -d <your_branch_name>
+```
+and to delete remote branch:
+```
+git push --delete origin <your_branch_name>
+```
