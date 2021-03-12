@@ -83,35 +83,29 @@ def fibonacci(f, a, b, e):
     f_count = 0
     
     n = find_n(a, b, e)
-    x1 = None
-    x2 = None
+    x1 = calc_x1(a, b, n, 1)
+    x2 = calc_x2(a, b, n, 1)
+    f1 = f(x1)
+    f2 = f(x2)
+    f_count = 2
 
-    for i in range(1, n + 1): #TODO: determine number of loops 
+    for i in range(2, n + 1): #TODO: determine number of loops 
         iter_count += 1
-
-        if x1 is None:
-            x1 = calc_x1(a, b, n, i)
-            f1 = f(x1)
-            f_count += 1
-
-        if (x2 is None):
-            x2 = calc_x2(a, b, n, i)
-            f2 = f(x2)
-            f_count += 1
         
         if f1 < f2:
             b = x2
             x2 = x1
             f2 = f1
-            x1 = None
-        elif f1 > f2:
+            x1 = calc_x1(a, b, n, i)
+            f1 = f(x1)
+            f_count += 1
+        else:
             a = x1
             x1 = x2
             f1 = f2
-            x2 = None
-        else:
-            a = x1
-            b = x2
+            x2 = calc_x2(a, b, n, i)
+            f2 = f(x2)
+            f_count += 1
         # print (a, b)
     return a + (b - a) / 2, iter_count, f_count
     
@@ -127,7 +121,7 @@ def parabolic(f, a, b, e):
 
     x1 = a
     x3 = b
-    x2 = (x1 + x3) / 2 # TODO: how to choose x2 so that f1 < f2 < f3 so that x1 < u < x3
+    x2 = (x1 + x3) / 2 # TODO: how to choose x2 so that f1 > f2 < f3 so that x1 < u < x3
     f1 = f(x1)
     f2 = f(x2)
     f3 = f(x3)
