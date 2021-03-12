@@ -25,52 +25,47 @@ def dichotomy(f, a, b, e):
 # TODO: endless loop on parameters: a = -3, b = 4, e = 1e-10, f = func_1
 # TODO: Fails on precision 1e-24 and smaller
 def golden_ratio(f, a, b, e):
+    k = (3 - math.sqrt(5)) / 2 # golden ration coeff
+    
     def calc_x1(a , b):
         return a + k * (b - a)
 
     def calc_x2(a, b):
         return b - k * (b - a)
 
-    k = (3 - math.sqrt(5)) / 2 # golden ration coeff
     iter_count = 0
     f_count = 0
 
-    x1 = None
-    x2 = None
+    x1 = calc_x1(a, b)
+    x2 = calc_x2(a, b)
+    f1 = f(x1)
+    f2 = f(x2)
+    f_count = 2
 
     while b - a > e:
         iter_count += 1
-
-        if x1 is None:
-            x1 = calc_x1(a, b)
-            f1 = f(x1)
-            f_count += 1
-
-        if (x2 is None):
-            x2 = calc_x2(a, b)
-            f2 = f(x2)
-            f_count += 1
 
         if f1 < f2:
             b = x2
             x2 = x1
             f2 = f1
-            x1 = None
-        elif f1 > f2:
+            x1 = calc_x1(a, b)
+            f1 = f(x1)
+            f_count += 1
+        else:
             a = x1
             x1 = x2
             f1 = f2
-            x2 = None
-        else:
-            a = x1
-            b = x2
+            x2 = calc_x2(a, b)
+            f2 = f(x2)
+            f_count += 1
         # print (a, b)
-    return a + (b - a) / 2, iter_count, f_count
+    return (a + b) / 2, iter_count, f_count
 
 # TODO: Fails on precision 1e-23 and smaller
 def fibonacci(f, a, b, e):
     def F(n):
-        return 1/math.sqrt(5)*(((1+math.sqrt(5))/2)**n-((1-math.sqrt(5))/2)**n)
+        return round(1/math.sqrt(5)*(((1+math.sqrt(5))/2)**n-((1-math.sqrt(5))/2)**n))
 
     def find_n(a, b, e):
         n = 1
