@@ -26,7 +26,7 @@ def test_dichotomy(f, a, b, e, x0):
 def test_golden_ratio(f, a, b, e, x0):
     output = golden_ratio(f, a, b, e)
     assert abs(x0 - output[0]) < e
-    assert output[2] == output[1] + 1
+    assert output[2] == output[1] + 2
 
 @pytest.mark.parametrize("f", f)
 @pytest.mark.parametrize("a", a)
@@ -36,7 +36,7 @@ def test_golden_ratio(f, a, b, e, x0):
 def test_fibonacci(f, a, b, e, x0):
     output = fibonacci(f, a, b, e)
     assert abs(x0 - output[0]) < e
-    assert output[2] == output[1] + 1
+    assert output[2] == output[1] + 2
 
 @pytest.mark.parametrize("f", f)
 @pytest.mark.parametrize("a", a)
