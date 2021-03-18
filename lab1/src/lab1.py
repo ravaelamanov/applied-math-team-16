@@ -1,4 +1,3 @@
-import math
 from sample_functions import *
 from methods import *
 

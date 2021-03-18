@@ -1,16 +1,17 @@
 import math
 
+
 def dichotomy(f, a, b, e):
-    delta = e / 2 - e/5 # TODO: figure out how to choose delta (delta == e/2 requires most iterations) probably should be as min as possible
+    delta = e / 2 - e / 5  # TODO: figure out how to choose delta (delta == e/2 requires most iterations) probably should be as min as possible
     iter_count = 0
     f_count = 0
     while b - a > e:
         iter_count += 1
-        x1 = (a + b)/2 - delta
-        x2 = (a + b)/2 + delta
+        x1 = (a + b) / 2 - delta
+        x2 = (a + b) / 2 + delta
         f1 = f(x1)
         f2 = f(x2)
-        if f1 < f2: 
+        if f1 < f2:
             b = x2
         elif f1 > f2:
             a = x1
@@ -24,9 +25,9 @@ def dichotomy(f, a, b, e):
 
 # TODO: endless loop on parameters: a = -3, b = 4, e = 1e-10, f = func_1
 def golden_ratio(f, a, b, e):
-    k = (3 - math.sqrt(5)) / 2 # golden ration coeff
-    
-    def calc_x1(a , b):
+    k = (3 - math.sqrt(5)) / 2  # golden ration coeff
+
+    def calc_x1(a, b):
         return a + k * (b - a)
 
     def calc_x2(a, b):
@@ -61,9 +62,10 @@ def golden_ratio(f, a, b, e):
         # print (a, b)
     return (a + b) / 2, iter_count, f_count
 
+
 def fibonacci(f, a, b, e):
     def F(n):
-        return round(1/math.sqrt(5)*(((1+math.sqrt(5))/2)**n-((1-math.sqrt(5))/2)**n))
+        return round(1 / math.sqrt(5) * (((1 + math.sqrt(5)) / 2) ** n - ((1 - math.sqrt(5)) / 2) ** n))
 
     def find_n(a, b, e):
         n = 1
@@ -76,10 +78,10 @@ def fibonacci(f, a, b, e):
 
     def calc_x2(a, b, n, k):
         return a + F(n - k + 2) / F(n - k + 3) * (b - a)
-        
+
     iter_count = 0
     f_count = 0
-    
+
     n = find_n(a, b, e)
     x1 = calc_x1(a, b, n, 1)
     x2 = calc_x2(a, b, n, 1)
@@ -87,9 +89,9 @@ def fibonacci(f, a, b, e):
     f2 = f(x2)
     f_count = 2
 
-    for i in range(2, n + 1): #TODO: determine number of loops 
+    for i in range(2, n + 1):  # TODO: determine number of loops
         iter_count += 1
-        
+
         if f1 < f2:
             b = x2
             x2 = x1
@@ -106,20 +108,19 @@ def fibonacci(f, a, b, e):
             f_count += 1
         # print (a, b)
     return a + (b - a) / 2, iter_count, f_count
-    
 
 
 def parabolic(f, a, b, e):
-     
-    def calc_u(x1, x2, x3, f1, f2, f3): # approximating parabola minimum
-        return x2-((x2-x1)**2*(f2-f3)-(x2-x3)**2*(f2-f1))/(2*((x2-x1)*(f2-f3)-(x2-x3)*(f2-f1)))
+    def calc_u(x1, x2, x3, f1, f2, f3):  # approximating parabola minimum
+        return x2 - ((x2 - x1) ** 2 * (f2 - f3) - (x2 - x3) ** 2 * (f2 - f1)) / (
+                    2 * ((x2 - x1) * (f2 - f3) - (x2 - x3) * (f2 - f1)))
 
     iter_count = 0
     f_count = 0
 
     x1 = a
     x3 = b
-    x2 = (x1 + x3) / 2 # TODO: how to choose x2 so that f1 > f2 < f3 so that x1 < u < x3
+    x2 = (x1 + x3) / 2  # TODO: how to choose x2 so that f1 > f2 < f3 so that x1 < u < x3
     f1 = f(x1)
     f2 = f(x2)
     f3 = f(x3)
@@ -153,20 +154,22 @@ def parabolic(f, a, b, e):
         # print(x1, x3)
     return u, iter_count, f_count
 
+
 def brent(f, a, c, eps):
     def are_different(x1, x2, x3, f1, f2, f3):
         return x1 != x2 and x1 != x3 and x2 != x3 and f1 != f2 and f1 != f3 and f2 != f3
 
-    def calc_u(x1, x2, x3, f1, f2, f3): # approximating parabola minimum
-        return x2-((x2-x1)**2*(f2-f3)-(x2-x3)**2*(f2-f1))/(2*((x2-x1)*(f2-f3)-(x2-x3)*(f2-f1)))
-    
+    def calc_u(x1, x2, x3, f1, f2, f3):  # approximating parabola minimum
+        return x2 - ((x2 - x1) ** 2 * (f2 - f3) - (x2 - x3) ** 2 * (f2 - f1)) / (
+                    2 * ((x2 - x1) * (f2 - f3) - (x2 - x3) * (f2 - f1)))
+
     def sign(x):
         return math.copysign(1, x)
 
     iter_count = 0
     f_count = 0
 
-    K = (3 - math.sqrt(5)) / 2 
+    K = (3 - math.sqrt(5)) / 2
     x = w = v = (a + c) / 2
     fx = fw = fv = f(x)
     f_count = 1
