@@ -2,7 +2,7 @@
 ## ITMO, 2 year, spring semester
 ### Prerequisites
 - Language: Python 3+  
-- Code editor: VSCode (preferrably)  
+- Code editor: VSCode (preferably)  
 - VSCode extensions: Python, Text Explorer UI, Python Test explorer for Visual Studio Code, Todo Tree (optional)
 - Test Framework: pytest
 ### Contribution
