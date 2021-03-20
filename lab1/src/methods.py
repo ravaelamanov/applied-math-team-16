@@ -4,7 +4,6 @@ import math
 def dichotomy(f, a, b, e):
     delta = e / 2 - e / 5  # TODO: figure out how to choose delta (delta == e/2 requires most iterations) probably should be as min as possible
     iter_count = 0
-    f_count = 0
     while b - a > e:
         iter_count += 1
         x1 = (a + b) / 2 - delta
@@ -34,7 +33,6 @@ def golden_ratio(f, a, b, e):
         return b - k * (b - a)
 
     iter_count = 0
-    f_count = 0
 
     x1 = calc_x1(a, b)
     x2 = calc_x2(a, b)
@@ -80,7 +78,6 @@ def fibonacci(f, a, b, e):
         return a + F(n - k + 2) / F(n - k + 3) * (b - a)
 
     iter_count = 0
-    f_count = 0
 
     n = find_n(a, b, e)
     x1 = calc_x1(a, b, n, 1)
@@ -116,7 +113,6 @@ def parabolic(f, a, b, e):
                     2 * ((x2 - x1) * (f2 - f3) - (x2 - x3) * (f2 - f1)))
 
     iter_count = 0
-    f_count = 0
 
     x1 = a
     x3 = b
@@ -167,7 +163,6 @@ def brent(f, a, c, eps):
         return math.copysign(1, x)
 
     iter_count = 0
-    f_count = 0
 
     K = (3 - math.sqrt(5)) / 2
     x = w = v = (a + c) / 2
