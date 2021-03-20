@@ -4,7 +4,9 @@ import math
 def dichotomy(f, a, b, e):
     delta = e / 2 - e / 5  # TODO: figure out how to choose delta (delta == e/2 requires most iterations) probably should be as min as possible
     iter_count = 0
+    intervals = []
     while b - a > e:
+        intervals.append((a, b))
         iter_count += 1
         x1 = (a + b) / 2 - delta
         x2 = (a + b) / 2 + delta
@@ -19,7 +21,7 @@ def dichotomy(f, a, b, e):
             b = x2
         # print(a, b)
     f_count = iter_count * 2
-    return a + (b - a) / 2, iter_count, f_count
+    return a + (b - a) / 2, iter_count, f_count, intervals
 
 
 # TODO: endless loop on parameters: a = -3, b = 4, e = 1e-10, f = func_1
@@ -33,6 +35,7 @@ def golden_ratio(f, a, b, e):
         return b - k * (b - a)
 
     iter_count = 0
+    intervals = []
 
     x1 = calc_x1(a, b)
     x2 = calc_x2(a, b)
@@ -41,6 +44,7 @@ def golden_ratio(f, a, b, e):
     f_count = 2
 
     while b - a > e:
+        intervals.append((a, b))
         iter_count += 1
 
         if f1 < f2:
@@ -58,7 +62,7 @@ def golden_ratio(f, a, b, e):
             f2 = f(x2)
             f_count += 1
         # print (a, b)
-    return (a + b) / 2, iter_count, f_count
+    return (a + b) / 2, iter_count, f_count, intervals
 
 
 def fibonacci(f, a, b, e):
@@ -78,6 +82,7 @@ def fibonacci(f, a, b, e):
         return a + F(n - k + 2) / F(n - k + 3) * (b - a)
 
     iter_count = 0
+    intervals = []
 
     n = find_n(a, b, e)
     x1 = calc_x1(a, b, n, 1)
@@ -87,6 +92,7 @@ def fibonacci(f, a, b, e):
     f_count = 2
 
     for i in range(2, n + 1):  # TODO: determine number of loops
+        intervals.append((a, b))
         iter_count += 1
 
         if f1 < f2:
@@ -104,7 +110,7 @@ def fibonacci(f, a, b, e):
             f2 = f(x2)
             f_count += 1
         # print (a, b)
-    return a + (b - a) / 2, iter_count, f_count
+    return a + (b - a) / 2, iter_count, f_count, intervals
 
 
 def parabolic(f, a, b, e):
@@ -113,6 +119,7 @@ def parabolic(f, a, b, e):
                     2 * ((x2 - x1) * (f2 - f3) - (x2 - x3) * (f2 - f1)))
 
     iter_count = 0
+    intervals = []
 
     x1 = a
     x3 = b
@@ -124,6 +131,7 @@ def parabolic(f, a, b, e):
 
     while 1:
         iter_count += 1
+        intervals.append((x1, x3))
 
         u = calc_u(x1, x2, x3, f1, f2, f3)
         if abs(u - x2) < e:
@@ -148,7 +156,7 @@ def parabolic(f, a, b, e):
                 x1 = u
                 f1 = fu
         # print(x1, x3)
-    return u, iter_count, f_count
+    return u, iter_count, f_count, intervals
 
 
 def brent(f, a, c, eps):
@@ -163,6 +171,7 @@ def brent(f, a, c, eps):
         return math.copysign(1, x)
 
     iter_count = 0
+    intervals = []
 
     K = (3 - math.sqrt(5)) / 2
     x = w = v = (a + c) / 2
@@ -171,6 +180,7 @@ def brent(f, a, c, eps):
     d = e = c - a
     u = None
     while d > eps:
+        intervals.append((a, c))
         iter_count += 1
         g = e
         e = d
@@ -214,4 +224,4 @@ def brent(f, a, c, eps):
                 v = u
                 fv = fu
         # print(a, c)
-    return u, iter_count, f_count
+    return u, iter_count, f_count, intervals
