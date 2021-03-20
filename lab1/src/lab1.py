@@ -1,14 +1,27 @@
 from sample_functions import *
 from methods import *
+import pandas as pd
 
 a = -2
 b = 2
-e = 1e-10
-given = (task_func, a, b, e)
+e_list = [10**(-i) for i in range(1, 20)]
+method_list = [dichotomy, golden_ratio, fibonacci, parabolic, brent]
 
-print(f"Dichotomy, epsilon = {given[3]}: {dichotomy(*given)}\n")
-print(f"Golden ratio, epsilon = {given[3]}: {golden_ratio(*given)}\n")
-print(f"Fibonacci, epsilon = {given[3]}: {fibonacci(*given)}\n")
-print(f"Parabolic, epsilon = {given[3]}: {parabolic(*given)}\n")
-print(f"Brent, epsilon = {given[3]}: {brent(*given)}\n")
+data = {
+    'Method': [],
+    'iter_count': [],
+    'f_count': [],
+    'e': []
+}
 
+for e in e_list:
+    given = (task_func, a, b, e)
+    for method in method_list:
+        out = method(*given)
+        data['Method'].append(method.__name__)
+        data['iter_count'].append(out[1])
+        data['f_count'].append(out[2])
+        data['e'].append(e)
+
+df = pd.DataFrame(data)
+print(df[df['e'] == 1e-5])
