@@ -7,3 +7,7 @@ def task_func(x):
 
 def func_1(x):
     return x ** 2 + 2 * x
+
+
+def multimodal1(x):
+    return x ** 4 - 8 * x ** 3 + 22 * x ** 2 - 24 * x + 1
